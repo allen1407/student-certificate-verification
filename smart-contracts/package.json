@@ -1,5 +1,5 @@
 {
-  "name": "smart-contracts",
+  "name": "certificate-registry-contracts",
   "version": "1.0.0",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
@@ -20,5 +20,14 @@
     "typechain": "^8.2.0",
     "typescript": "^5.9.3"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "issuer:local": "hardhat run scripts/manage_issuer.js --network localhost"
+  }
 }
