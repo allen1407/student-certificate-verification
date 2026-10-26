@@ -14,9 +14,11 @@ export const STATUS = Object.freeze({
 });
 
 export function createReadProvider(rpcUrl, chainId) {
-  // A static network stops ethers from retrying network detection forever
-  // when the node is down; calls fail fast and the UI can say so.
-  return new JsonRpcProvider(rpcUrl, Network.from(chainId), { staticNetwork: true });
+  // staticNetwork: stops ethers retrying network detection forever when the
+  // node is down, so calls fail fast and the UI can say so.
+  // cacheTimeout -1: ethers otherwise reuses identical requests for 250 ms,
+  // which can return pre-transaction state right after a confirmation.
+  return new JsonRpcProvider(rpcUrl, Network.from(chainId), { staticNetwork: true, cacheTimeout: -1 });
 }
 
 const toNumber = (value) => Number(value ?? 0);
